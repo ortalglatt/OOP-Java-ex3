@@ -1,0 +1,49 @@
+ortal.netzer
+
+
+=============================
+=      File description     =
+=============================
+StorageUnit.java - The parent class of the Locker and the LongTermStorage classes, an abstract class.
+Locker.java - Contains the Locker class (a kind of a storage unit).
+LongTermStorage.java - Contains the LongTermStorage class (another kind of a storage unit).
+LockerTest.java - Contains a test class that tests all the Locker class methods.
+LockerTest.java - Contains a test class that tests all the LongTermStorage class methods.
+
+BoopingSite.java - Contains the Booping Site class, a part of hotel search engine.
+RatingComparator.java - Implements a comparator that compare hotels dou to their star rating. if their ratings are,
+                        equal, it will compare alphabetically their names.
+ProximityComparator.java - Implements a comparator that compare hotels dou to their proximity from a specific location.
+                           if their proximity are equal, it will compare their POI number.
+BoopingSiteTest.java - Contains a test class that tests all the BoopingSite class methods.
+
+
+=============================
+=          Design           =
+=============================
+I implemented a parent class for all the storage units, because their are some common methods and data members for both
+the Locker and the LongTermStorage, and their are both a kind of a storage unit. I chose to make this class abstract,
+because its capacity is determined in a different way in each inherited class, and also the available capacity. For that
+reason, the StorageUnit class could not use most of its method without the current capacity.
+
+In the BoopingSite design, I implemented two different classes of comparators, that there both using the java
+comparators (for ints, doubles and strings).
+
+In the tests classes, I parted the tests to small functions, so the user would know easily what was the problem in it's
+code. I made test for different cases, with different Item or datasets so that the result can be trusted.
+
+
+=============================
+=  Implementation details   =
+=============================
+The difference between the Locker class to the LongTermStorage class, are that it's not possible to remove items from
+the LongTermStorage, so the removeItems method appears only in the Locker. The AddItem is different in the two classes,
+but the basic checks are common, so I used super here. The Locker cannot be reset, so the resetInventory method appears
+only in the LongTermStorage.
+
+In the BoopingSite class I used a private method of hotelsInCity that gets a hotels array and a city, and returns a list
+of all the hotels in the city. I made a separate method for that, because their are two methods that return the hotels
+in a given city, but with different sort (rating or proximity).
+In both of the methods getHotelsInCityByProximity and getHotelsInCityByRating, I used a List and than converted it to an
+array, because at the time the methods create the list, it doesn't know the size of it (the amount of hotels in the
+city), so I used a List because when we create an array, we have to know its size before.
